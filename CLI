@@ -1,0 +1,43 @@
+'''
+Created on 13.05.2014
+
+@author: Johannes
+'''
+from __future__ import (unicode_literals, absolute_import,
+                        division, print_function)
+import argparse
+import json
+from oparlvalidator import *
+
+
+parser= argparse.ArgumentParser('Mein CLI')
+
+parser.add_argument("-j", "--json" ,help= "Please add the JSON file you want to  validate, and the parameter -j ")
+args= parser.parse_args()
+
+
+if args.json:
+    # reads the given file as a string and test if there is a given file
+        f = open(args.json)
+        lines = f.read()
+        
+        f.close()
+      
+            
+
+
+        
+       
+validator = OParl(lines)
+
+try:
+    result = validator.validate();
+except Exception as err:
+    result = err;        
+        
+        
+    
+print("The given document is a valid JSON-file and will be tested, now...")
+print(result  )     
+        
+    
